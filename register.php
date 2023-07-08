@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $to = $_POST['email']; // Specify the recipient's email address
         $subject = "Email Verification";
         $message = "Please click the following link to verify your email address:\n\n";
-        $message .= "http://localhost/verify.php?code=" . urlencode($verificationCode);
+        $message .= "http://localhost/vbs/verify.php?code=" . urlencode($verificationCode);
         $headers = "From: your_email@example.com";
 
         // Uncomment the line below to send the email
