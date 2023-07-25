@@ -22,32 +22,7 @@ $stmt->close();
 <html>
 <head>
     <title>Admin Venue Orders</title>
-    <style>
-        /* CSS code for table styling */
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Admin Venue Orders</h2>

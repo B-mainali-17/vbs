@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 require 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['code'])) {

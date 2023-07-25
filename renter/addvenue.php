@@ -27,6 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errorMessage = "Please fill in all the required fields.";
     } elseif (!is_numeric($maxCapacity) || !is_numeric($minCapacity)) {
         $errorMessage = "Capacity values should be numeric.";
+    } elseif ($maxCapacity <= 0 || $minCapacity <= 0) {
+        $errorMessage = "Capacity values should be greater than zero.";
+    } elseif ($maxCapacity <= $minCapacity) {
+        $errorMessage = "Max Capacity must be greater than Min Capacity.";
     } else {
         // Upload venue image file
         if (isset($_FILES['venueImage'])) {
@@ -38,13 +42,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Check if the file was uploaded without any error
             if ($fileError === 0) {
-                // Specify the directory to which the file will be uploaded
-                $uploadDirectory = 'uploads/';
-                $uploadedFilePath = $uploadDirectory . $fileName;
+                // Check the image size
+                if ($fileSize <= 200000) { // Max file size: 200 KB
+                    // Get the image dimensions
+                    $imageSize = getimagesize($fileTmpName);
+                    $imageWidth = $imageSize[0];
+                    $imageHeight = $imageSize[1];
 
-                // Move the uploaded file to the specified directory
-                move_uploaded_file($fileTmpName, $uploadedFilePath);
-                $venueImage = $uploadedFilePath;
+                    // Check if the image is in landscape orientation
+                    if ($imageWidth > $imageHeight) {
+                        // Specify the directory to which the file will be uploaded
+                        $uploadDirectory = '../uploads/';
+                        $uploadedFilePath = $uploadDirectory . $fileName;
+
+                        // Move the uploaded file to the specified directory
+                        move_uploaded_file($fileTmpName, $uploadedFilePath);
+                        $venueImage = $uploadedFilePath;
+                    } else {
+                        $errorMessage = "Please upload an image with landscape dimensions.";
+                    }
+                } else {
+                    $errorMessage = "Please upload an image with a file size of less than 200 KB.";
+                }
             } else {
                 $errorMessage = "Error uploading the image file.";
             }
@@ -58,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
 
             // Redirect the user to a success page or any desired page after adding the venue
-           echo "venue added";
+            echo "Venue added successfully.";
+            header("Location: dashboard.php");
             exit();
         }
     }

@@ -1,0 +1,65 @@
+body{
+  margin: 0;
+  padding:0;
+  Height: 100vh;
+  }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(116, 116, 118);
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(219, 146, 11);
+}
+
+.header .login-signup {
+  display: flex;
+  gap: 10px;
+}
+
+  /* Styles for the footer */
+  .footer {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Styles for the sidebar */
+  .sidebar {
+    width: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+
+  /* Styles for the search button */
+  .search-button {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .search-button input[type="text"] {
+    width: 200px;
+    padding: 5px;
+  }
+
+  .search-button button {
+    padding: 5px 10px;
+  }
+  

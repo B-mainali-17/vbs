@@ -8,8 +8,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_status'] != 0) {
     exit();
 }
 
-// Retrieve all venues from the database
-$stmt = $conn->prepare("SELECT id, venueName, venueLocation, maxCapacity, minCapacity FROM venues");
+// Retrieve venues with verification_status = 1 from the database
+$stmt = $conn->prepare("SELECT id, venueName, venueLocation, maxCapacity, minCapacity FROM venues WHERE verification_status = 1");
 $stmt->execute();
 $stmt->bind_result($venue_id, $venueName, $venueLocation, $maxCapacity, $minCapacity);
 $venues = [];

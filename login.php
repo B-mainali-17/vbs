@@ -82,21 +82,101 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Login Form</title>
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 40px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .errorMessage {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .registerLink {
+            text-align: center;
+        }
+
+        .registerLink a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login Form</h2>
-    <?php if (!empty($errorMessage)): ?>
-        <p><?php echo $errorMessage; ?></p>
-    <?php endif; ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required value="<?php echo $username; ?>"><br><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br><br>
-        
-        <input type="submit" value="Login">
-    </form>
-    <a href="register.php">Register</a>
+    <div class="container">
+        <h2>Login Form</h2>
+        <?php $username = isset($username) ? $username : ''; ?>
+        <?php if (!empty($errorMessage)): ?>
+            <p class="errorMessage"><?php echo $errorMessage; ?></p>
+        <?php endif; ?>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required value="<?php echo $username; ?>">
+            
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+            
+            <input type="submit" value="Login">
+        </form>
+        <div class="registerLink">
+            <a href="register.php">Register</a>
+        </div>
+    </div>
 </body>
 </html>
